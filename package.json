@@ -4,7 +4,8 @@
   "description": "Lessons for express",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "deb": "DEBUG=express:router npm run dev"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/victorshkoda/nodelesson/issues"
   },
-  "homepage": "https://github.com/victorshkoda/nodelesson#readme"
+  "homepage": "https://github.com/victorshkoda/nodelesson#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
