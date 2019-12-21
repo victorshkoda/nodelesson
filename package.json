@@ -1,0 +1,19 @@
+{
+  "name": "nodelesson",
+  "version": "1.0.0",
+  "description": "Lessons for express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorshkoda/nodelesson.git"
+  },
+  "author": "victorshkoda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorshkoda/nodelesson/issues"
+  },
+  "homepage": "https://github.com/victorshkoda/nodelesson#readme"
+}
