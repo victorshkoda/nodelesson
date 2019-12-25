@@ -1,5 +1,6 @@
 const express = require('express');
 const authRouter = require('./routs/auth');
+const bodyParser = require('body-parser');
 // const mysql = require('mysql');
 const app = express();
 
@@ -19,6 +20,9 @@ app.get('/', (req, res) => {
     }
   );
 });*/
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 app.get('/', (req, res)=>{
     res.status(200).send('Hello World!');
