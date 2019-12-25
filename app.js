@@ -1,7 +1,9 @@
 const express = require('express');
-const authRouter = require('./routs/auth');
 const bodyParser = require('body-parser');
-// const mysql = require('mysql');
+const cors = require('express-cors');
+const morgan = require('morgan');
+const authRouter = require('./routs/auth');
+const mysql = require('mysql');
 const app = express();
 
 /*const connection = mysql.createConnection({
@@ -10,8 +12,9 @@ const app = express();
   password: 'kxt27111',
   database: 'nodelesson'
 });
-connection.connect();
-app.get('/', (req, res) => {
+connection.connect();*/
+
+/*app.get('/', (req, res) => {
   connection.query(
     'SELECT * FROM users',
     (error, result) => {
@@ -20,9 +23,10 @@ app.get('/', (req, res) => {
     }
   );
 });*/
-
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req, res)=>{
     res.status(200).send('Hello World!');
