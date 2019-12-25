@@ -1,8 +1,8 @@
 const express = require('express');
-const mysql = require('mysql');
+// const mysql = require('mysql');
 const app = express();
 
-const connection = mysql.createConnection({
+/*const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'kxt27111',
@@ -17,5 +17,10 @@ app.get('/', (req, res) => {
       res.status(200).json(result);
     }
   );
+});*/
+
+app.get('/', (req, res)=>{
+    res.status(200).send('Hello World!');
 });
+
 module.exports = app;
