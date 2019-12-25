@@ -1,4 +1,5 @@
 const express = require('express');
+const authRouter = require('./routs/auth');
 // const mysql = require('mysql');
 const app = express();
 
@@ -22,5 +23,7 @@ app.get('/', (req, res) => {
 app.get('/', (req, res)=>{
     res.status(200).send('Hello World!');
 });
+
+app.use('/api/auth', authRouter);
 
 module.exports = app;
