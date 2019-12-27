@@ -3,26 +3,41 @@ const bodyParser = require('body-parser');
 const cors = require('express-cors');
 const morgan = require('morgan');
 const authRouter = require('./routs/auth');
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
+const db = require('./dbconf');
 const app = express();
 
-/*const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'kxt27111',
-  database: 'nodelesson'
-});
-connection.connect();*/
+const connection = mysql.createPool(
+    Object.assign({
+            connectionLimit: 10,
+            waitForConnections: true,
+            queueLimit: 0
+        },
+        db
+    )
+);
 
-/*app.get('/', (req, res) => {
-  connection.query(
-    'SELECT * FROM users',
-    (error, result) => {
-      if (error) throw err;
-      res.status(200).json(result);
+
+
+async function go(){
+    try {
+        await connection.query(
+            'SELECT * FROM users',
+            (error, result, fields) => {
+                if (error) throw err;
+                console.log('db connected');
+                console.log("res", result);
+            });
+    }catch (e) {
+        console.error('SQL::ERROR:: ' + e);
+        throw e
+    } finally {
+        await connection.release()
     }
-  );
-});*/
+}
+
+go();
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
