@@ -4,7 +4,7 @@ const cors = require('express-cors');
 const morgan = require('morgan');
 const authRouter = require('./routs/auth');
 const mysql = require('mysql2/promise');
-const db = require('./dbconf');
+const db = require('./config/dbconf');
 const app = express();
 
 const connection = mysql.createPool(
