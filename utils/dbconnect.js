@@ -11,19 +11,15 @@ const connection = mysql.createPool(
     )
 );
 
-module.exports = async function dbconnect(){
+module.exports.db = async function(query){
+    const con = await connection.getConnection()
     try {
-        await connection.query(
-            'SELECT * FROM users',
-            (error, result, fields) => {
-                if (error) throw err;
-                console.log('db connected');
-                console.log("res", result);
-            });
+        const [result] = await con.query(query);
+        return result;
     }catch (e) {
         console.error('SQL::ERROR:: ' + e);
         throw e
-    } finally {
-        await connection.release()
+    }finally {
+        await con.release();
     }
 };

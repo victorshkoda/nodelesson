@@ -6,7 +6,6 @@ const authRouter = require('./routs/auth');
 const connect = require('./utils/dbconnect');
 const app = express();
 
-connect();
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));

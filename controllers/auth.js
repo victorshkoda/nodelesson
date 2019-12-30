@@ -1,9 +1,9 @@
-module.exports.login = function (req, res) {
+const authmodel = require('../models/Auth');
+
+module.exports.login = async function (req, res) {
+    const users = await authmodel.getUsers();
     res.status(200).json({
-        "login": {
-            email: req.body.email,
-            password: req.body.password
-        }
+        users
     })
 };
 
