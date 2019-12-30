@@ -12,13 +12,13 @@ const connection = mysql.createPool(
 );
 
 module.exports.db = async function(query){
-    const con = await connection.getConnection()
+    const con = await connection.getConnection();
     try {
         const [result] = await con.query(query);
         return result;
     }catch (e) {
         console.error('SQL::ERROR:: ' + e);
-        throw e
+        return 'SQL::ERROR:: ' + e
     }finally {
         await con.release();
     }
