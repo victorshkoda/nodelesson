@@ -11,9 +11,11 @@ module.exports.register = async function (req, res) {
     const users = await authmodel.setUsers(req.body.firstname, req.body.lastname, req.body.img, req.body.phone, req.body.login, req.body.passwd);
     let send = {};
     if(users.affectedRows){
-        send = {"status": "ok"}
+        send = {"status": "ok"};
+        res.status(200).json(send);
     }else{
-        send = {'error': users}
+        send = {'error': users};
+        res.status(208).json(send);
     }
-    res.status(200).json(send);
+
 };
