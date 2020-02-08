@@ -18,7 +18,7 @@ module.exports.db = async function(query){
         return result;
     }catch (e) {
         console.error('SQL::ERROR:: ' + e);
-        return e.message
+        return e
     }finally {
         await con.release();
     }
