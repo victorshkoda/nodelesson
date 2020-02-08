@@ -1,12 +1,12 @@
 const db = require('../utils/dbconnect').db;
 
 exports.getUsers = async ()=>{
-    const query = 'SELECT id, firstname, lastname, img, phone, login, passwd, birsday, email FROM users';
+    const query = 'SELECT id, firstname, lastname, img, phone, login, passwd, regdate, email FROM users';
     return await db(query);
 };
 
 exports.getUser = async (email)=>{
-    const query = `SELECT id, firstname, lastname, img, phone, login, passwd, birsday, email FROM users WHERE email="${email}"`;
+    const query = `SELECT id, firstname, lastname, img, phone, login, passwd, regdate, email FROM users WHERE email="${email}"`;
     return await db(query);
 };
 
