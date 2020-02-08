@@ -1,7 +1,9 @@
 const authmodel = require('../models/Auth');
 
 module.exports.login = async function (req, res) {
+    console.log('Cookie: ', req.cookies.token)
     const users = await authmodel.getUsers();
+    if(!req.cookies.token)res.cookie('token', Math.random());
     res.status(200).json({
         users
     })
