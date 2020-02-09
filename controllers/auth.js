@@ -11,7 +11,7 @@ module.exports.users = async function (req, res) {
 };
 
 module.exports.logout = async function (req, res) {
-    res.clearCookie("token").status(200).json({message: "Вы вышли"})
+    res.clearCookie("token").status(200).json({message: "Вы вышли!"})
 };
 
 
