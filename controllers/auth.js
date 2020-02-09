@@ -5,9 +5,15 @@ const codeError = require('../config/code_errors');
 const key = require('../config/key');
 
 module.exports.users = async function (req, res) {
+    console.log(req.currentUser.email);
     const users = await authmodel.getUsers();
     res.status(200).json({users})
 };
+
+module.exports.logout = async function (req, res) {
+    res.clearCookie("token").status(200).json({message: "Вы вышли"})
+};
+
 
 module.exports.login = async function (req, res) {
     const email = req.body.email.trim();
@@ -19,7 +25,7 @@ module.exports.login = async function (req, res) {
     }, key.jwt, {expiresIn: 2592000 });
     const ifPassword = bcript.compareSync(password, user[0].passwd);
     if(user.length > 0 && ifPassword){
-        if(!req.cookies.token)res.cookie('token', token);
+        if(!req.cookies.token)res.cookie('token', 'Bearer'+token);
         res.status(200).json({user, token})
     }else{
         res.status(200).json({'message': codeError[10002], "code": "10002"});

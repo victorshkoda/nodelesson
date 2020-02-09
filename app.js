@@ -4,12 +4,13 @@ const cookieParser = require('cookie-parser');
 const cors = require('./config/cors');
 const morgan = require('morgan');
 const authRouter = require('./routs/auth');
+const key = require('./config/key');
 const app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cookieParser('secret key'));
+app.use(cookieParser(key.jwt));
 app.use(cors);
 
 app.get('/', (req, res)=>{
