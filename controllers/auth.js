@@ -16,6 +16,11 @@ module.exports.logout = async function (req, res) {
 
 
 module.exports.login = async function (req, res) {
+    console.log(req.body);
+    if(!req.body.email){
+        res.status(401).json({message: 'No data'});
+        return false;
+    }
     const email = req.body.email.trim();
     const password = req.body.password.trim();
     const user = await authmodel.getUser(email);
