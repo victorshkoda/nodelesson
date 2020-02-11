@@ -17,6 +17,7 @@ module.exports.isLogin= async function (req, res) {
     if(req.currentUser.email){
         const email = req.currentUser.email;
         const user = await authmodel.getUser(email);
+        console.log(user);
         res.status(200).json(user[0]);
     }else{
         console.log('No data');
