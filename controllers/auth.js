@@ -5,13 +5,23 @@ const codeError = require('../config/code_errors');
 const key = require('../config/key');
 
 module.exports.users = async function (req, res) {
-    console.log(req.currentUser.email);
     const users = await authmodel.getUsers();
     res.status(200).json({users})
 };
 
 module.exports.logout = async function (req, res) {
     res.clearCookie("token").status(200).json({message: "Вы вышли!"})
+};
+
+module.exports.isLogin= async function (req, res) {
+    if(req.currentUser.email){
+        const email = req.currentUser.email;
+        const user = await authmodel.getUser(email);
+        res.status(200).json(user[0]);
+    }else{
+        console.log('No data');
+        res.status(200).json({message: 'Not loginned'});
+    }
 };
 
 

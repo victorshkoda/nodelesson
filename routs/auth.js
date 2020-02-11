@@ -23,5 +23,6 @@ router.post('/login', controller.login);
 router.post('/logout', controller.logout);
 router.post('/register', controller.register);
 router.post('/users',userData, controller.users);
+router.post('/check_login',userData, controller.isLogin);
 
 module.exports = router;
