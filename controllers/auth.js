@@ -2,6 +2,7 @@ const bcript = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const authmodel = require('../models/Auth');
 const codeError = require('../config/code_errors');
+const mailer = require('../utils/mailer');
 const key = require('../config/key');
 
 module.exports.users = async function (req, res) {
@@ -14,10 +15,11 @@ module.exports.logout = async function (req, res) {
 };
 
 module.exports.isLogin= async function (req, res) {
+    // const mail = await mailer.mailer({});
     if(req.currentUser.email){
         const email = req.currentUser.email;
         const user = await authmodel.getUser(email);
-        console.log(user);
+        // await mailer.mailer(user[0]);
         res.status(200).json(user[0]);
     }else{
         console.log('No data');
@@ -60,6 +62,7 @@ module.exports.register = async function (req, res) {
       bcript.hashSync(password, salt),
       req.body.email.trim()
     );
+    console.log(users);
     let send = {};
     if(users.affectedRows){
         send = {"status": "ok"};
