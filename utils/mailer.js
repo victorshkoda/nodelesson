@@ -12,14 +12,14 @@ module.exports.mailer = async function main(data) {
     });
     let mailOptions = {
         // should be replaced with real recipient's account
-        to: 'victorshkoda@mail.ru',
-        subject: "test",
+        to: data.email,
+        subject: "Confirm email",
         html: `<b>Hello ${data.firstname} ${data.lastname}</b>`
     };
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
         }
-        console.log('Message %s sent: %s', info.messageId, info.response);
+        console.log('Message %s sent: %s', info.messageId, info.response, data.email);
     });
 };
