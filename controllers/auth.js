@@ -43,7 +43,8 @@ module.exports.login = async function (req, res) {
     }, key.jwt, {expiresIn: 2592000 });
     const ifPassword = bcript.compareSync(password, user[0].passwd);
     if(user.length > 0 && ifPassword){
-        if(!req.cookies.token)res.cookie('token', 'Bearer'+token);
+        let expiryDate = new Date(Number(new Date()) + 2592000000);
+        if(!req.cookies.token)res.cookie('token', 'Bearer'+token, { expires: expiryDate, httpOnly: true });
         res.status(200).json({user, token})
     }else{
         res.status(200).json({'message': codeError[10002], "code": "10002"});
