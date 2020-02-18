@@ -7,6 +7,7 @@ const authRouter = require('./routs/auth');
 const key = require('./config/key');
 const app = express();
 
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
