@@ -9,7 +9,9 @@ module.exports.sock = (socket) => {
             sendUser = user[0];
         }
         socket.emit('status', sendUser);
-    })
+        return socket;
+    });
 };
+
 
 

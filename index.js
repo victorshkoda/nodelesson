@@ -6,6 +6,7 @@ const {sock} = require('./utils/socket');
 
 io.on('connection', socket => {
     sock(socket);
+    global.socket = socket;
     console.log('Socket started');
 });
 
