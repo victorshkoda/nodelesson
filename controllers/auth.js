@@ -7,7 +7,7 @@ const key = require('../config/key');
 
 module.exports.users = async function (req, res) {
     const users = await authmodel.getUsers();
-    socket.emit('users', users);
+    // socket.emit('users', users);
     res.status(200).json({users})
 };
 
